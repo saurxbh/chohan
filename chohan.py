@@ -38,8 +38,8 @@ while True: # Main game loop
 
     # Let the player bet cho or han
     while True:
-        bet = input('> ').upper()
-        if bet != 'CHO' or bet != 'HAN':
+        bet = input('> ').strip().upper()
+        if bet != 'CHO' and bet != 'HAN':
             print('Please enter either \'CHO\' or \'HAN\'')
             continue
         else:
@@ -47,8 +47,8 @@ while True: # Main game loop
 
     # Reveal the dice results:
     print('The dealer lifts the cup to reveal:')
-    print('\t{}-{}'.format(JAPANESE_NUMBERS[die1],JAPANESE_NUMBERS[die2]))
-    print('\t\t{}-{}'.format(die1,die2))
+    print('    {}-{}'.format(JAPANESE_NUMBERS[die1],JAPANESE_NUMBERS[die2]))
+    print('      {}-{}'.format(die1,die2))
 
     # Determine if the player won
     rollIsEven = (die1 + die2) % 2 == 0
@@ -58,3 +58,19 @@ while True: # Main game loop
         correctBet = 'HAN'
     
     playerWon = bet == correctBet
+
+    # Display the bet results
+    if playerWon:
+        print('You won! You take {} mon.'.format(pot))
+        purse += pot # Player's winnings
+        print('The house collects a {} mon fee.'.format(pot // 10))
+        purse -= (pot // 10) # House collects 10% fee.
+    else:
+        purse -= pot # Player loses the bet
+        print('You lost.')
+
+    # Check if the player has run out of money
+    if purse <= 0:
+        print('You have run out of money.')
+        print('Thanks for playing!')
+        sys.exit()
