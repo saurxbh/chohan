@@ -44,3 +44,17 @@ while True: # Main game loop
             continue
         else:
             break # valid response
+
+    # Reveal the dice results:
+    print('The dealer lifts the cup to reveal:')
+    print('\t{}-{}'.format(JAPANESE_NUMBERS[die1],JAPANESE_NUMBERS[die2]))
+    print('\t\t{}-{}'.format(die1,die2))
+
+    # Determine if the player won
+    rollIsEven = (die1 + die2) % 2 == 0
+    if rollIsEven:
+        correctBet = 'CHO'
+    else:
+        correctBet = 'HAN'
+    
+    playerWon = bet == correctBet
