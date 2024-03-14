@@ -44,6 +44,17 @@ while True: # Main game loop
             continue
         else:
             break # valid response
+    
+    # Rig the dice result
+    if (bet == 'CHO' and (die1 + die2) % 2 == 0) or (bet == 'HAN' and (die1 + die2) % 2 != 0):
+        if die1 < 6:
+            die1 += 1
+        elif die2 < 6:
+            die2 += 1
+        elif die1 == 6 and die2 == 6:
+            die1 -= 1
+    else:
+        pass
 
     # Reveal the dice results:
     print('The dealer lifts the cup to reveal:')
