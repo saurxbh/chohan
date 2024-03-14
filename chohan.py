@@ -25,3 +25,22 @@ while True: # Main game loop
         else:
             pot = int(pot) # Valid bet, convert pot to an integer
             break # Exit the loop once a valid bet is placed
+
+    # Roll the dice
+    die1 = random.randint(1, 6)
+    die2 = random.randint(1, 6)
+
+    print('The dealer swirls the cup and you hear the rattle of dice.')
+    print('The dealer slams the cup on the floor, still covering the')
+    print('dice and asks for your bet.')
+    print()
+    print('\t\t\tCHO (even) or HAN(odd)?')
+
+    # Let the player bet cho or han
+    while True:
+        bet = input('> ').upper()
+        if bet != 'CHO' or bet != 'HAN':
+            print('Please enter either \'CHO\' or \'HAN\'')
+            continue
+        else:
+            break # valid response
